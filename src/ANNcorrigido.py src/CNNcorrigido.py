@@ -1,10 +1,10 @@
-# ANNReconhecimentoObjetos_v2_testeExterno.py
+# CNNReconhecimentoObjetos_v2_testeExterno.py
 import cv2
 import numpy as np
 import pandas as pd
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, BatchNormalization, Dropout
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, BatchNormalization, Dropout, GlobalAveragePooling2D, Dense
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 import os
@@ -21,7 +21,7 @@ def save_to_csv(image_path, label):
     df = df._append({"image_path": image_path, "label": label}, ignore_index=True)
     df.to_csv(csv_path, index=False)
 
-camera = cv2.VideoCapture(0)
+camera = cv2.VideoCapture(1)
 print("Pressione 'c' para salvar uma imagem com Capacete.")
 print("Pressione 'o' para salvar uma imagem com Óculos.")
 print("Pressione 'm' para salvar uma imagem com Máscara.")
@@ -99,7 +99,6 @@ while True:
         for _, row in data.iterrows():
             img = cv2.imread(row['image_path'])
             img = cv2.resize(img, (64, 64))
-            img = img.flatten()
             images.append(img)
             labels.append(row['label'])
         images = np.array(images) / 255.0
@@ -108,43 +107,57 @@ while True:
         x_train, x_val, y_train, y_val = train_test_split(images, labels, test_size=0.3, random_state=42)
 
         model = Sequential()
-        model.add(Dense(256, activation='relu', input_shape=(64*64*3,)))
+        model.add(Conv2D(32, (3,3), activation='relu', padding='same', input_shape=(64, 64, 3)))
         model.add(BatchNormalization())
-        model.add(Dropout(0.3))
-        model.add(Dense(128, activation='relu'))
+        model.add(MaxPooling2D((2,2)))
+        model.add(Dropout(0.25))
+
+        model.add(Conv2D(64, (3,3), activation='relu', padding='same'))
         model.add(BatchNormalization())
-        model.add(Dropout(0.3))
-        model.add(Dense(64, activation='relu'))
+        model.add(MaxPooling2D((2,2)))
+        model.add(Dropout(0.25))
+
+        model.add(Conv2D(128, (3,3), activation='relu', padding='same'))
         model.add(BatchNormalization())
-        model.add(Dropout(0.3))
-        model.add(Dense(32, activation='relu'))
+        model.add(MaxPooling2D((2,2)))
+        model.add(Dropout(0.25))
+
+        model.add(Conv2D(128, (3,3), activation='relu', padding='same'))
         model.add(BatchNormalization())
-        model.add(Dropout(0.3))
+        model.add(MaxPooling2D((2,2)))
+        model.add(Dropout(0.25))
+
+        model.add(GlobalAveragePooling2D())
+
+        model.add(Dense(256, activation='relu'))
+        model.add(BatchNormalization())
+        model.add(Dropout(0.5))
+
         model.add(Dense(8, activation='softmax'))
         model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
-        print("Treinando o modelo ANN com BatchNormalization...")
+        print("Treinando o modelo CNN AumentaProfundidade...")
         history = model.fit(x_train, y_train, validation_data=(x_val, y_val), epochs=70, batch_size=32)
 
         plt.plot(history.history['loss'], label='Loss Treino')
         plt.plot(history.history['val_loss'], label='Loss Validação')
         plt.xlabel('Épocas'); plt.ylabel('Loss'); plt.legend()
-        plt.title('Loss durante o treino ANN Split'); plt.show()
+        plt.title('Loss durante o treino CNN Split'); plt.show()
 
         plt.plot(history.history['accuracy'], label='Acurácia Treino')
         plt.plot(history.history['val_accuracy'], label='Acurácia Validação')
         plt.xlabel('Épocas'); plt.ylabel('Acurácia'); plt.legend()
-        plt.title('Acurácia durante o treino ANN Split'); plt.show()
+        plt.title('Acurácia durante o treino CNN Split'); plt.show()
 
         y_pred_probs = model.predict(x_val)
         y_pred = np.argmax(y_pred_probs, axis=1)
         cm = confusion_matrix(y_val, y_pred)
         disp = ConfusionMatrixDisplay(confusion_matrix=cm)
         disp.plot(cmap=plt.cm.Blues)
-        plt.title('Matriz de Confusão ANN Split'); plt.show()
+        plt.title('Matriz de Confusão CNN Split'); plt.show()
 
-        model.save('meuModeloANN_v2.keras')
-        print("Modelo ANN salvo com sucesso.")
+        model.save('meuModeloCNN_v2.keras')
+        print("Modelo CNN salvo com sucesso.")
 
     elif key == ord('t'):
         data = pd.read_csv(csv_path)
@@ -153,47 +166,60 @@ while True:
         for _, row in data.iterrows():
             img = cv2.imread(row['image_path'])
             img = cv2.resize(img, (64, 64))
-            img = img.flatten()
             images.append(img)
             labels.append(row['label'])
         images = np.array(images) / 255.0
         labels = np.array(labels)
 
         model = Sequential()
-        model.add(Dense(256, activation='relu', input_shape=(64*64*3,)))
+        model.add(Conv2D(32, (3,3), activation='relu', padding='same', input_shape=(64, 64, 3)))
         model.add(BatchNormalization())
-        model.add(Dropout(0.3))
-        model.add(Dense(128, activation='relu'))
+        model.add(MaxPooling2D((2,2)))
+        model.add(Dropout(0.25))
+
+        model.add(Conv2D(64, (3,3), activation='relu', padding='same'))
         model.add(BatchNormalization())
-        model.add(Dropout(0.3))
-        model.add(Dense(64, activation='relu'))
+        model.add(MaxPooling2D((2,2)))
+        model.add(Dropout(0.25))
+
+        model.add(Conv2D(128, (3,3), activation='relu', padding='same'))
         model.add(BatchNormalization())
-        model.add(Dropout(0.3))
-        model.add(Dense(32, activation='relu'))
+        model.add(MaxPooling2D((2,2)))
+        model.add(Dropout(0.25))
+
+        model.add(Conv2D(128, (3,3), activation='relu', padding='same'))
         model.add(BatchNormalization())
-        model.add(Dropout(0.3))
+        model.add(MaxPooling2D((2,2)))
+        model.add(Dropout(0.25))
+
+        model.add(GlobalAveragePooling2D())
+
+        model.add(Dense(256, activation='relu'))
+        model.add(BatchNormalization())
+        model.add(Dropout(0.5))
+
         model.add(Dense(8, activation='softmax'))
         model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
-        print("Treinando o modelo ANN completo...")
+        print("Treinando o modelo CNN completo...")
         history = model.fit(images, labels, epochs=70, batch_size=32)
 
         plt.plot(history.history['loss'], label='Loss Treino')
         plt.xlabel('Épocas'); plt.ylabel('Loss'); plt.legend()
-        plt.title('Loss durante o treino ANN Conjunto Completo'); plt.show()
+        plt.title('Loss durante o treino CNN Conjunto Completo'); plt.show()
 
         plt.plot(history.history['accuracy'], label='Acurácia Treino')
         plt.xlabel('Épocas'); plt.ylabel('Acurácia'); plt.legend()
-        plt.title('Acurácia durante o treino ANN Conjunto Completo'); plt.show()
+        plt.title('Acurácia durante o treino CNN Conjunto Completo'); plt.show()
 
-        model.save('meuModeloCompletoANN_v2.keras')
-        print("Modelo ANN completo salvo com sucesso.")
+        model.save('meuModeloCompletoCNN_v2.keras')
+        print("Modelo CNN completo salvo com sucesso.")
 
     elif key == ord('v'):
-        modelTest = tf.keras.models.load_model('meuModeloCompletoANN_v2.keras')
-        print("ANN carregado com sucesso.")
+        modelTest = tf.keras.models.load_model('meuModeloCompletoCNN_v2.keras')
+        print("CNN carregado com sucesso.")
         img = cv2.resize(frame, (64, 64))
-        img = img.flatten() / 255.0
+        img = img / 255.0
         img = np.expand_dims(img, axis=0)
         prediction = modelTest.predict(img)
         predicted_class = np.argmax(prediction)
@@ -204,8 +230,8 @@ while True:
         }
         cv2.putText(frame, label_map[predicted_class], (10, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        print(f"Classe prevista pela ANN: {label_map[predicted_class]}")
-        cv2.imshow("Validação ANN", frame)
+        print(f"Classe prevista pela CNN: {label_map[predicted_class]}")
+        cv2.imshow("Validação CNN", frame)
 
     elif key == ord('e'):
         print("Finalizando a captura de imagens.")
