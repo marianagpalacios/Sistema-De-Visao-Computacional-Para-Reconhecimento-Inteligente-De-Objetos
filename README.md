@@ -64,4 +64,27 @@ A pesquisa foi desenvolvida no âmbito do **Programa de Iniciação Científica 
 
 ---
 
+## 🚀 Como executar
+
+Clone o repositório:
+```bash
+git clone https://github.com/usuario/Sistema-De-Visao-Computacional-Para-Reconhecimento-Inteligente-De-Objetos.git
+cd Sistema-De-Visao-Computacional-Para-Reconhecimento-Inteligente-De-Objetos
+
+python -m venv venv
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\activate      # Windows
+
+pip install -r requirements.txt
+
+# Rede Neural Artificial (ANN)
+python src/ANNcorrigido.py
+
+# Rede Neural Convolucional (CNN)
+python src/CNNcorrigido.py
+
+
+
+
+
 
