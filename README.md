@@ -1,3 +1,70 @@
-# SISTEMA DE VISÃO COMPUTACIONAL PARA RECONHECIMENTO INTELIGENTE DE OBJETOS
+# 🦾 Sistema de Visão Computacional para Reconhecimento de EPIs
 
-Este trabalho propõe o desenvolvimento de um sistema de reconhecimento de objetos em trabalhadores com a utilização de visão computacional, tendo como foco identificar o uso de equipamentos de proteção individual (EPIs), como óculos de proteção, capacetes e máscaras, em trabalhadores da construção civil, onde o uso desses itens é essencial para a segurança. Foram utilizadas duas abordagens de redes neurais: Redes Neurais Convolucionais (CNNs) e Redes Neurais Artificiais (ANNs), para isso, a metodologia envolve a coleta de imagens de situações de uso de EPIs, a classificação dessas imagens e a comparação do desempenho das abordagens. Após a validação, notou-se a necessidade de um modelo mais robusto para detecção em tempo real e de múltiplos objetos simultaneamente, o que levou à implementação e teste do modelo YOLOv9. Assim, os resultados indicam a eficácia de ambas as técnicas e conclui-se o potencial do sistema para aplicações reais, com possibilidades de aprimoramentos futuros.
+Este projeto tem como objetivo o desenvolvimento de um **sistema inteligente de visão computacional** para reconhecimento de **Equipamentos de Proteção Individual (EPIs)**, como **óculos de proteção, capacetes e máscaras**, aplicados ao contexto da **construção civil**.  
+
+A pesquisa foi desenvolvida no âmbito do **Programa de Iniciação Científica (UTFPR - CNPq)**.
+
+---
+
+## 📌 Objetivos
+
+- Detectar automaticamente o uso de EPIs em trabalhadores.  
+- Comparar diferentes arquiteturas de redes neurais:  
+  - **Redes Neurais Artificiais (ANNs)**  
+  - **Redes Neurais Convolucionais (CNNs)**  
+- Explorar arquiteturas de **detecção em tempo real** com **YOLOv9**.  
+- Avaliar e comparar o desempenho de cada abordagem.  
+
+---
+
+## 🧪 Metodologia
+
+1. **Coleta e pré-processamento de dados**  
+   - 360 imagens divididas entre as classes de interesse (óculos, capacete, máscara e combinações).  
+   - Redimensionamento para **224×224 px** e normalização dos pixels em `[0,1]`.  
+
+2. **Treinamento dos modelos**  
+   - ANN e CNN treinadas por **70 épocas**.  
+   - Variações de topologia para cada arquitetura (BatchNormalization, Aumento de profundidade, etc.).  
+
+3. **Avaliação de desempenho**  
+   - Curvas de *accuracy* e *loss*.  
+   - Matrizes de confusão.  
+   - Testes práticos com imagens reais.  
+
+4. **Integração do YOLOv9**  
+   - Implementação para detecção em tempo real.  
+   - Capacidade de identificar múltiplos objetos em um único quadro.  
+
+---
+
+## 📊 Resultados principais
+
+- **CNNs** apresentaram desempenho superior às ANNs, alcançando até **97,22% de acurácia** na validação.  
+- A **ANN com BatchNormalization** teve bom equilíbrio, mas menor desempenho geral.  
+- O **YOLOv9** superou as limitações, oferecendo **detecção robusta, rápida e em tempo real**.  
+
+---
+
+## 📚 Tecnologias utilizadas
+
+- **Python 3.10+**  
+- **[TensorFlow](https://www.tensorflow.org/)** / **[Keras](https://keras.io/)** – Modelos ANN e CNN  
+- **[PyTorch](https://pytorch.org/)** – Implementação do YOLOv9  
+- **[OpenCV](https://opencv.org/)** – Processamento de imagens  
+- **[Matplotlib](https://matplotlib.org/)** / **[Seaborn](https://seaborn.pydata.org/)** – Visualização de resultados  
+- **[Jupyter Notebook](https://jupyter.org/)** – Experimentação e análises  
+
+---
+
+## 👩‍💻 Autores
+
+- **Mariana Gasparotto Palácios** – Bolsista CNPq – Engenharia de Software  
+- **Prof. Dr. Márcio Mendonça** – Orientador  
+
+---
+
+## 📖 Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).  
+
