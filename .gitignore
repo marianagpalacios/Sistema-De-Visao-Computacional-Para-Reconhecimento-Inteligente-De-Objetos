@@ -1,0 +1,32 @@
+# Arquivos de cache do Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+
+# Ambientes virtuais
+env/
+venv/
+ENV/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Modelos treinados
+*.h5
+*.hdf5
+*.pt
+*.pth
+
+# Dados temporários
+*.csv
+*.npz
+*.npy
+*.zip
+*.tar
+*.gz
+
+# Outros
+.DS_Store
