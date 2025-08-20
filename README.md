@@ -64,7 +64,4 @@ A pesquisa foi desenvolvida no âmbito do **Programa de Iniciação Científica 
 
 ---
 
-## 📖 Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE).  
 
