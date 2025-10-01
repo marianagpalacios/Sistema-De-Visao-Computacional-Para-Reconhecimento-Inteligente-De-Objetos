@@ -12,7 +12,6 @@ A pesquisa foi desenvolvida no âmbito do **Programa de Iniciação Científica 
 - Comparar diferentes arquiteturas de redes neurais:  
   - **Redes Neurais Artificiais (ANNs)**  
   - **Redes Neurais Convolucionais (CNNs)**  
-- Explorar arquiteturas de **detecção em tempo real** com **YOLOv9**.  
 - Avaliar e comparar o desempenho de cada abordagem.  
 
 ---
@@ -32,7 +31,7 @@ A pesquisa foi desenvolvida no âmbito do **Programa de Iniciação Científica 
    - Matrizes de confusão.  
    - Testes práticos com imagens reais.  
 
-4. **Integração do YOLOv9**  
+4. **Futura integração do YOLOv9**  
    - Implementação para detecção em tempo real.  
    - Capacidade de identificar múltiplos objetos em um único quadro.  
 
@@ -42,7 +41,7 @@ A pesquisa foi desenvolvida no âmbito do **Programa de Iniciação Científica 
 
 - **CNNs** apresentaram desempenho superior às ANNs, alcançando até **97,22% de acurácia** na validação.  
 - A **ANN com BatchNormalization** teve bom equilíbrio, mas menor desempenho geral.  
-- O **YOLOv9** superou as limitações, oferecendo **detecção robusta, rápida e em tempo real**.  
+- Notou-se a necessidade de uma futura aplicação de **YOLOv9** para superar limitações**.  
 
 ---
 
