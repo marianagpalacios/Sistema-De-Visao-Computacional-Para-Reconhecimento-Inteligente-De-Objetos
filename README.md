@@ -41,7 +41,7 @@ A pesquisa foi desenvolvida no âmbito do **Programa de Iniciação Científica 
 
 - **CNNs** apresentaram desempenho superior às ANNs, alcançando até **97,22% de acurácia** na validação.  
 - A **ANN com BatchNormalization** teve bom equilíbrio, mas menor desempenho geral.  
-- Notou-se a necessidade de uma futura aplicação de **YOLOv9** para superar limitações**.  
+- **Notou-se a necessidade de uma futura aplicação de **YOLOv9** para superar limitações**.  
 
 ---
 
