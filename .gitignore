@@ -30,3 +30,19 @@ ENV/
 
 # Outros
 .DS_Store
+
+# Dados e imagens
+data/raw/
+data/processed/
+captured_data/
+
+# Modelos treinados
+models/*.keras
+models/*.h5
+*.keras
+
+# Relatórios temporários
+~$*.docx
+
+# Cache
+.cache/
