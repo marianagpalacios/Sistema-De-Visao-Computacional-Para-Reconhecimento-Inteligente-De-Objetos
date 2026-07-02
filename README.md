@@ -52,6 +52,10 @@ As imagens passaram por pré-processamento com:
 - normalização dos pixels para o intervalo **[0, 1]**;
 - organização das classes para treinamento, validação e testes.
 
+## Observação sobre os dados
+
+O dataset completo não está incluído neste repositório por questões de privacidade e tamanho dos arquivos. A pasta `data/` contém uma descrição da organização utilizada durante os experimentos.
+
 ### 2. Treinamento dos modelos
 
 Os modelos foram treinados por **70 épocas**, com acompanhamento de:
