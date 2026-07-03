@@ -1,0 +1,6 @@
+topologia,loss_final,acuracia_final_percentual
+Modelo Base Inicial,0.3538,55.60
+ReduzComplexidade,0.9752,62.50
+RedeMaisProfunda,1.4956,33.33
+BatchNormalization,1.0717,73.61
+FunilInvertido,2.0174,29.17

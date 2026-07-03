@@ -1,0 +1,10 @@
+classe,erros,acertos
+Capacete azul,9,1
+Capacete branco,5,5
+Máscara,1,9
+Óculos,10,0
+Capacete e máscara,2,8
+Capacete e óculos,3,7
+Óculos e máscara,10,0
+Tudo,9,1
+Sem nada,5,5

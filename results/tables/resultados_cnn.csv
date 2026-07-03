@@ -1,0 +1,6 @@
+topologia,loss_final,acuracia_final_percentual
+Modelo Base Inicial,0.3538,93.06
+BatchNormalization,0.2796,91.67
+AumentaProfundidade,0.1164,97.22
+ArquiteturaRasa,0.2685,94.44
+GlobalAveragePooling,0.2462,93.06
